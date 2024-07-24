@@ -9,6 +9,28 @@
     #endregion
 
     [ModuleInitializer]
-    public static void InitializeOther() =>
+    public static void InitializeOther()
+    {
         VerifyDiffPlex.Initialize();
+
+        #region scrubbers
+
+        // remove some noise from the html snapshot
+        VerifierSettings.ScrubEmptyLines();
+        BlazorScrubber.ScrubCommentLines();
+        VerifierSettings.ScrubLinesWithReplace(s =>
+        {
+            var scrubbed = s.Replace("<!--!-->", "");
+            if (string.IsNullOrWhiteSpace(scrubbed))
+            {
+                return null;
+            }
+
+            return scrubbed;
+        });
+        HtmlPrettyPrint.All();
+        VerifierSettings.ScrubLinesContaining("<script src=\"_framework/dotnet.");
+
+        #endregion
+    }
 }

@@ -34,11 +34,11 @@ Will produce:
 
 The component rendered as html `...Component.verified.html`:
 
-snippet: Verify.Bunit.Tests/Samples.Component.verified.html
+snippet: Tests/Samples.Component.verified.html
 
 And the current model rendered as txt `...Component.verified.txt`:
 
-snippet: Verify.Bunit.Tests/Samples.Component.verified.txt
+snippet: Tests/Samples.Component.verified.txt
 
 
 ## Exclude Component
