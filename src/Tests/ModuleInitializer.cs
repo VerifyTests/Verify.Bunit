@@ -11,8 +11,6 @@
     [ModuleInitializer]
     public static void InitializeOther()
     {
-        VerifyDiffPlex.Initialize();
-
         #region scrubbers
 
         // remove some noise from the html snapshot
@@ -32,5 +30,7 @@
         VerifierSettings.ScrubLinesContaining("<script src=\"_framework/dotnet.");
 
         #endregion
+
+        VerifierSettings.InitializePlugins();
     }
 }
