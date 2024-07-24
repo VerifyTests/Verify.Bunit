@@ -1,0 +1,23 @@
+﻿<div>
+    <h1>@Title</h1>
+    <p>@Person.Name</p>
+    <button>MyButton</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "My Test Component";
+
+    [Parameter]
+    public Person Person { get; set; }
+
+    public bool Intitialized;
+
+    protected override Task OnInitializedAsync()
+    {
+        Intitialized = true;
+        return Task.CompletedTask;
+    }
+
+}
