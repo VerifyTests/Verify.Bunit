@@ -66,7 +66,7 @@ Enable at startup:
 public static void Initialize() =>
     VerifyBunit.Initialize();
 ```
-<sup><a href='/src/Tests/ModuleInitializer.cs#L3-L9' title='Snippet source file'>snippet source</a> | <a href='#snippet-BunitEnable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/ModuleInitializer.cs#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-BunitEnable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This test:
@@ -231,7 +231,7 @@ VerifierSettings.ScrubLinesWithReplace(
 HtmlPrettyPrint.All();
 VerifierSettings.ScrubLinesContaining("<script src=\"_framework/dotnet.");
 ```
-<sup><a href='/src/Tests/ModuleInitializer.cs#L14-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrubbers' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/src/Tests/ModuleInitializer.cs#L16-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrubbers' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
