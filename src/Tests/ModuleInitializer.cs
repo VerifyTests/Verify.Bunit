@@ -1,4 +1,6 @@
-﻿public static class ModuleInitializer
+﻿using VerifyTests.DiffPlex;
+
+public static class ModuleInitializer
 {
     #region BunitEnable
 
@@ -32,6 +34,7 @@
 
         #endregion
 
+        VerifyDiffPlex.Initialize(OutputType.Compact);
         VerifierSettings.InitializePlugins();
     }
 }
