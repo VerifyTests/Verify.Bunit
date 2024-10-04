@@ -4,7 +4,7 @@ static class RenderedFragmentToString
     {
         var nodes = fragment.Nodes;
         var markup = nodes
-            .ToHtml(new DiffMarkupFormatter())
+            .ToHtml(DiffMarkupFormatter.Instance)
             .Trim();
         var nodeCount = nodes.Sum(_ => _
             .GetDescendantsAndSelf()
