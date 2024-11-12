@@ -5,6 +5,6 @@
             null,
             "html",
             markup
-                .ToHtml(DiffMarkupFormatter.Instance)
+                .ToHtml(new DiffMarkupFormatter())
                 .Trim());
 }
