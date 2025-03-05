@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <RootNamespace>testing</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MarkdownSnippets.MsBuild" PrivateAssets="all" />
