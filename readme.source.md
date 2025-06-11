@@ -15,9 +15,9 @@ The below samples use the following Component:
 snippet: BlazorApp/TestComponent.razor
 
 
-## NuGet package
+## NuGet
 
-* https://nuget.org/packages/Verify.Bunit/
+* https://nuget.org/packages/Verify.Bunit
 
 
 ## Usage

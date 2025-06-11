@@ -50,7 +50,7 @@ The below samples use the following Component:
 <!-- endSnippet -->
 
 
-## NuGet package
+## NuGet
 
 * https://nuget.org/packages/Verify.Bunit/
 
