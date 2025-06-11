@@ -8,6 +8,12 @@ Support for rendering a [Blazor Component](https://docs.microsoft.com/en-us/aspn
 
 **See [Milestones](../../milestones?state=closed) for release notes.**
 
+
+## Sponsors
+
+include: zzz
+
+
 ## Component
 
 The below samples use the following Component:
