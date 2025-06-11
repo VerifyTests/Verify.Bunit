@@ -52,7 +52,7 @@ The below samples use the following Component:
 
 ## NuGet
 
-* https://nuget.org/packages/Verify.Bunit/
+* https://nuget.org/packages/Verify.Bunit
 
 
 ## Usage
