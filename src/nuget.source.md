@@ -1,8 +1,8 @@
-[Documentation](https://github.com/VerifyTests/Verify.Bun)
+[Documentation](https://github.com/VerifyTests/Verify.Bunit)
 
 include: intro
 
-**See [Milestones](https://github.com/VerifyTests/Verify.Bun/milestones?state=closed) for release notes.**
+**See [Milestones](https://github.com/VerifyTests/Verify.Bunit/milestones?state=closed) for release notes.**
 
 
 ## Sponsors

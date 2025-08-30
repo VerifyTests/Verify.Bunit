@@ -9,7 +9,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 Support for rendering a [Blazor Component](https://docs.microsoft.com/en-us/aspnet/core/blazor/#components) to a verified file via [bunit](https://bunit.egilhansen.com). Verify.Bunit uses the bUnit APIs to take a snapshot (metadata and html) of the current state of a Blazor component. Since it leverages the bUnit API, snapshots can be on a component that has been manipulated using the full bUnit feature set, for example [trigger event handlers](https://bunit.egilhansen.com/docs/interaction/trigger-event-handlers.html).<!-- singleLineInclude: intro. path: /docs/mdsource/intro.include.md -->
 
-**See [Milestones](https://github.com/VerifyTests/Verify.Bun/milestones?state=closed) for release notes.**
+**See [Milestones](https://github.com/VerifyTests/Verify.Bunit/milestones?state=closed) for release notes.**
 
 
 ## Sponsors
