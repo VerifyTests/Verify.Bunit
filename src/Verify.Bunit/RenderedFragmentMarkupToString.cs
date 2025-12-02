@@ -1,10 +1,8 @@
 static class RenderedFragmentMarkupToString
 {
-    public static ConversionResult Convert(IRenderedFragment fragment, IReadOnlyDictionary<string, object> context)
+    public static ConversionResult Convert(IRenderedComponent<IComponent> component, IReadOnlyDictionary<string, object> context)
     {
-        var markup = fragment
-            .Nodes.ToHtml(new DiffMarkupFormatter())
-            .Trim();
+        var markup = component.Markup.Trim();
         return new(null, "html", markup);
     }
 }

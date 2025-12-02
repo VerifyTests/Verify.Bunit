@@ -1,21 +1,19 @@
 class RenderedFragmentConverter :
-    WriteOnlyJsonConverter<IRenderedFragment>
+    WriteOnlyJsonConverter<IRenderedComponent<IComponent>>
 {
-    public override void Write(VerifyJsonWriter writer, IRenderedFragment fragment)
+    public override void Write(VerifyJsonWriter writer, IRenderedComponent<IComponent> component)
     {
         writer.WriteStartObject();
 
-        var instance = ComponentReader.GetInstance(fragment);
+        var instance = ComponentReader.GetInstance(component);
         if (instance != null)
         {
-            writer.WriteMember(fragment, instance, PrettyName(instance.GetType()));
+            writer.WriteMember(component, instance, PrettyName(instance.GetType()));
         }
 
         writer.WriteMember(
-            fragment,
-            fragment
-            .Nodes.ToHtml(new DiffMarkupFormatter())
-            .Trim(),
+            component,
+            component.Markup.Trim(),
             "Markup");
         writer.WriteEndObject();
     }
