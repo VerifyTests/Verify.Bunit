@@ -1,27 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-
-static class ComponentReader
+﻿static class ComponentReader
 {
-    public static IComponent? GetInstance(IRenderedFragment fragment)
-    {
-        var type = fragment.GetType();
-        if (!type.IsGenericType)
-        {
-            return null;
-        }
-
-        var componentInterface = type
-            .GetInterfaces()
-            .SingleOrDefault(_ =>
-                _.IsGenericType &&
-                _.GetGenericTypeDefinition() == typeof(IRenderedComponentBase<>));
-
-        if (componentInterface == null)
-        {
-            return null;
-        }
-
-        var instanceProperty = componentInterface.GetProperty("Instance")!;
-        return (IComponent) instanceProperty.GetValue(fragment)!;
-    }
+    public static IComponent? GetInstance<TComponent>(IRenderedComponent<TComponent> component) where TComponent : IComponent =>
+        component.Instance;
 }

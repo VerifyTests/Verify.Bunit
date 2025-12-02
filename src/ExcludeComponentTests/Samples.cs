@@ -3,8 +3,8 @@ public class Samples
     [Fact]
     public Task Component()
     {
-        using var context = new TestContext();
-        var component = context.RenderComponent<TestComponent>(
+        using var context = new BunitContext();
+        var component = context.Render<TestComponent>(
             builder =>
             {
                 builder.Add(
@@ -23,7 +23,7 @@ public class Samples
     [Fact]
     public async Task WaitForState()
     {
-        using var context = new TestContext();
+        using var context = new BunitContext();
         var component = await context.RenderComponentAndWait<TestComponent>(
             builder =>
             {
