@@ -87,8 +87,8 @@ This test:
 [Fact]
 public Task Component()
 {
-    using var context = new TestContext();
-    var component = context.RenderComponent<TestComponent>(
+    using var context = new BunitContext();
+    var component = context.Render<TestComponent>(
         builder =>
         {
             builder.Add(
@@ -107,8 +107,8 @@ public Task Component()
 [Fact]
 public Task MarkupFormattable_NodeList()
 {
-    using var context = new TestContext();
-    var component = context.RenderComponent<TestComponent>(
+    using var context = new BunitContext();
+    var component = context.Render<TestComponent>(
         builder =>
         {
             builder.Add(
@@ -127,8 +127,8 @@ public Task MarkupFormattable_NodeList()
 [Fact]
 public Task MarkupFormattable_single_Element()
 {
-    using var context = new TestContext();
-    var component = context.RenderComponent<TestComponent>(
+    using var context = new BunitContext();
+    var component = context.Render<TestComponent>(
         builder =>
         {
             builder.Add(
@@ -159,7 +159,7 @@ The component rendered as html `...Component.verified.html`:
   <h1>New Title</h1>
   <p>Sam</p>
   <button>MyButton</button>
-</div
+</div>
 ```
 <sup><a href='/src/Tests/Samples.Component.verified.html#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-Tests/Samples.Component.verified.html' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
