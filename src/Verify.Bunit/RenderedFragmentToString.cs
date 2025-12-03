@@ -1,11 +1,10 @@
 static class RenderedFragmentToString
 {
-    public static ConversionResult Convert(IRenderedFragment fragment, IReadOnlyDictionary<string, object> context)
+    public static ConversionResult Convert(object fragment, IReadOnlyDictionary<string, object> context)
     {
-        var nodes = fragment.Nodes;
-        var markup = nodes
-            .ToHtml(new DiffMarkupFormatter())
-            .Trim();
+        dynamic dynamicFragment = fragment;
+        var nodes = (INodeList)dynamicFragment.Nodes;
+        var markup = nodes.ToDiffMarkup().Trim();
         var nodeCount = nodes.Sum(_ => _
             .GetDescendantsAndSelf()
             .Count());

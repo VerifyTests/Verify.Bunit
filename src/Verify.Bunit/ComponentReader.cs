@@ -2,7 +2,7 @@
 
 static class ComponentReader
 {
-    public static IComponent? GetInstance(IRenderedFragment fragment)
+    public static IComponent? GetInstance(object fragment)
     {
         var type = fragment.GetType();
         if (!type.IsGenericType)
@@ -14,7 +14,7 @@ static class ComponentReader
             .GetInterfaces()
             .SingleOrDefault(_ =>
                 _.IsGenericType &&
-                _.GetGenericTypeDefinition() == typeof(IRenderedComponentBase<>));
+                _.GetGenericTypeDefinition().FullName == "Bunit.IRenderedComponent`1");
 
         if (componentInterface == null)
         {

@@ -1,24 +1,31 @@
 class RenderedFragmentConverter :
-    WriteOnlyJsonConverter<IRenderedFragment>
+    WriteOnlyJsonConverter
 {
-    public override void Write(VerifyJsonWriter writer, IRenderedFragment fragment)
+    public override void Write(VerifyJsonWriter writer, object value)
     {
+        // Cast to dynamic to access properties at runtime
+        dynamic fragment = value;
+        
         writer.WriteStartObject();
 
-        var instance = ComponentReader.GetInstance(fragment);
+        var instance = ComponentReader.GetInstance(value);
         if (instance != null)
         {
-            writer.WriteMember(fragment, instance, PrettyName(instance.GetType()));
+            writer.WriteMember(value, instance, PrettyName(instance.GetType()));
         }
 
         writer.WriteMember(
-            fragment,
-            fragment
-            .Nodes.ToHtml(new DiffMarkupFormatter())
+            value,
+            ((INodeList)fragment.Nodes)
+            .ToDiffMarkup()
             .Trim(),
             "Markup");
         writer.WriteEndObject();
     }
+
+    public override bool CanConvert(Type type) =>
+        type.IsGenericType &&
+        type.GetGenericTypeDefinition().FullName == "Bunit.IRenderedComponent`1";
 
     static string PrettyName(Type type)
     {

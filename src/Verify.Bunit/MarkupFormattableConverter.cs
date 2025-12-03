@@ -7,7 +7,7 @@
         writer.WriteMember(
             markup,
             markup
-            .ToHtml(new DiffMarkupFormatter())
+            .ToDiffMarkup()
             .Trim(),
             "Markup");
         writer.WriteEndObject();

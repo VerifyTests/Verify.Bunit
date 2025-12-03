@@ -1,16 +1,20 @@
 using AngleSharp.Diffing.Core;
 using AngleSharp.Text;
-using Bunit.Rendering;
+using AngleSharp.Html.Parser;
 using CompareResult = VerifyTests.CompareResult;
 
 static class BunitMarkupComparer
 {
     public static Task<CompareResult> Compare(string received, string verified, IReadOnlyDictionary<string, object> context)
     {
-        using var parser = new BunitHtmlParser();
-        var receivedNodes = parser.Parse(received);
-        var verifiedNodes = parser.Parse(verified);
-        var diffs = receivedNodes.CompareTo(verifiedNodes);
+        // Use AngleSharp's HTML parser to parse the strings
+        var parser = new HtmlParser();
+        var receivedNodes = parser.ParseDocument(received).ChildNodes;
+        var verifiedNodes = parser.ParseDocument(verified).ChildNodes;
+        
+        // Get the HTML comparer from the nodes using bUnit extension method
+        var comparer = receivedNodes.GetHtmlComparer();
+        var diffs = comparer.Compare(receivedNodes, verifiedNodes).ToList();
 
         var result = diffs.Count == 0
             ? CompareResult.Equal
