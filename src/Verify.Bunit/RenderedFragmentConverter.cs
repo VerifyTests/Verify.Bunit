@@ -16,7 +16,7 @@ class RenderedFragmentConverter :
 
         writer.WriteMember(
             value,
-            ((IMarkupFormattable)(INodeList)fragment.Nodes)
+            GetMarkupFormattable(fragment.Nodes)
             .ToHtml()
             .Trim(),
             "Markup");
@@ -26,6 +26,9 @@ class RenderedFragmentConverter :
     public override bool CanConvert(Type type) =>
         type.IsGenericType &&
         type.GetGenericTypeDefinition().FullName == "Bunit.IRenderedComponent`1";
+
+    static IMarkupFormattable GetMarkupFormattable(dynamic nodes) =>
+        (IMarkupFormattable)(INodeList)nodes;
 
     static string PrettyName(Type type)
     {
