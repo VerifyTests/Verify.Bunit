@@ -25,17 +25,19 @@ public static class VerifyBunit
                 var type = value.GetType();
                 if (!type.IsGenericType || type.GetGenericTypeDefinition().FullName != "Bunit.IRenderedComponent`1")
                 {
-                    return null;
+                    return default;
                 }
 
+                ConversionResult result;
                 if (excludeComponent)
                 {
-                    return RenderedFragmentMarkupToString.Convert(value, context);
+                    result = RenderedFragmentMarkupToString.Convert(value, context);
                 }
                 else
                 {
-                    return RenderedFragmentToString.Convert(value, context);
+                    result = RenderedFragmentToString.Convert(value, context);
                 }
+                return result;
             });
 
         VerifierSettings.RegisterFileConverter<IMarkupFormattable>(MarkupFormattableToString.Convert);
@@ -55,11 +57,9 @@ public static class VerifyBunit
     /// <param name="predicate">The predicate to invoke after each render, which must returns <c>true</c> when the desired state has been reached.</param>
     /// <param name="timeout">The maximum time to wait for the desired state.</param>
     /// <exception cref="WaitForFailedException">Thrown if the <paramref name="predicate" /> throw an exception during invocation, or if the timeout has been reached. See the inner exception for details.</exception>
-    public static async Task WaitFor<TComponent>(this IRenderedComponent<TComponent> component, Func<bool> predicate, TimeSpan? timeout = null)
-        where TComponent : IComponent
-    {
-        await component.WaitForStateAsync(predicate, timeout);
-    }
+    public static Task WaitFor<TComponent>(this IRenderedComponent<TComponent> component, Func<bool> predicate, TimeSpan? timeout = null)
+        where TComponent : IComponent =>
+        component.WaitForStateAsync(predicate, timeout);
 
     public static Task ClickAsync(
         this IElement element,
@@ -75,7 +75,7 @@ public static class VerifyBunit
         bool altKey = default,
         bool metaKey = default,
         string? type = default) =>
-        MouseEventDispatchExtensions.ClickAsync(element,
+        EventHandlerDispatchExtensions.ClickAsync(element,
             new()
             {
                 Detail = detail,
@@ -92,50 +92,8 @@ public static class VerifyBunit
                 Type = type!
             });
 
-    public static Task ChangeAsync<T>(this IElement element, T value) =>
-        InputEventDispatchExtensions.ChangeAsync(element, CreateFrom(value));
-
-    static ChangeEventArgs CreateFrom<T>(T value) =>
-        new()
-        {
-            Value = FormatValue(value)
-        };
-
-    static object? FormatValue<T>(T value)
-        => value switch
-        {
-            null => null,
-            bool _ => value,
-            string _ => value,
-            ICollection values => FormatValues(values),
-            IEnumerable values => FormatValues(values),
-            _ => BindConverter.FormatValue(value)
-        };
-
-    static object?[] FormatValues(ICollection values)
-    {
-        var result = new object?[values.Count];
-
-        var index = 0;
-        foreach (var value in values)
-        {
-            result[index++] = FormatValue(value);
-        }
-
-        return result;
-    }
-
-    static object?[] FormatValues(IEnumerable values)
-    {
-        var result = new List<object?>();
-
-        foreach (var value in values)
-        {
-            result.Add(FormatValue(value));
-        }
-
-        return result.ToArray();
-    }
+    public static void Change<T>(this IElement element, T value) =>
+        EventHandlerDispatchExtensions.Change(element, value);
 
     /// <summary>
     /// Instantiates and performs a first render of a component of type <typeparamref name="TComponent" />.
@@ -152,7 +110,7 @@ public static class VerifyBunit
         Func<TComponent, bool> renderedCheck,
         TimeSpan? timeout = null)
         where TComponent : IComponent =>
-        Inner(() => context.RenderComponent(parameterBuilder), timeout, renderedCheck);
+        Inner(() => context.Render(parameterBuilder), timeout, renderedCheck);
 
     /// <summary>
     /// Renders the <paramref name="fragment" /> and returns the first <typeparamref name="TComponent" /> in the resulting render tree.

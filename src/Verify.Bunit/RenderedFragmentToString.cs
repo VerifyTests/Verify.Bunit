@@ -3,12 +3,13 @@ static class RenderedFragmentToString
     public static ConversionResult Convert(object fragment, IReadOnlyDictionary<string, object> context)
     {
         dynamic dynamicFragment = fragment;
-        var nodes = (INodeList)dynamicFragment.Nodes;
-        var markup = nodes.ToDiffMarkup().Trim();
-        var nodeCount = nodes.Sum(_ => _
+        var nodes = (IMarkupFormattable)(INodeList)dynamicFragment.Nodes;
+        var markup = nodes.ToHtml()?.Trim() ?? string.Empty;
+        var nodeCount = ((INodeList)dynamicFragment.Nodes).Sum(_ => _
             .GetDescendantsAndSelf()
             .Count());
         var info = new FragmentInfo(ComponentReader.GetInstance(fragment), nodeCount);
-        return new(info, "html", markup);
+        var targets = new[] { new Target("html", markup) };
+        return new(info, targets);
     }
 }

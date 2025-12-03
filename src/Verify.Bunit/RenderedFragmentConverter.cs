@@ -16,8 +16,8 @@ class RenderedFragmentConverter :
 
         writer.WriteMember(
             value,
-            ((INodeList)fragment.Nodes)
-            .ToDiffMarkup()
+            ((IMarkupFormattable)(INodeList)fragment.Nodes)
+            .ToHtml()
             .Trim(),
             "Markup");
         writer.WriteEndObject();
