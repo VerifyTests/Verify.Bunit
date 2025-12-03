@@ -25,19 +25,16 @@ public static class VerifyBunit
                 var type = value.GetType();
                 if (!type.IsGenericType || type.GetGenericTypeDefinition().FullName != "Bunit.IRenderedComponent`1")
                 {
-                    return default;
+                    // Return a result with empty targets to indicate this converter doesn't handle this type
+                    return new ConversionResult(null, Array.Empty<Target>());
                 }
 
-                ConversionResult result;
                 if (excludeComponent)
                 {
-                    result = RenderedFragmentMarkupToString.Convert(value, context);
+                    return RenderedFragmentMarkupToString.Convert(value, context);
                 }
-                else
-                {
-                    result = RenderedFragmentToString.Convert(value, context);
-                }
-                return result;
+
+                return RenderedFragmentToString.Convert(value, context);
             });
 
         VerifierSettings.RegisterFileConverter<IMarkupFormattable>(MarkupFormattableToString.Convert);
