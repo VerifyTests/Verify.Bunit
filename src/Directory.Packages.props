@@ -4,7 +4,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="bunit" Version="1.40.0" />
+    <PackageVersion Include="bunit" Version="1.40.0" Pinned="true" />
     <PackageVersion Include="bunit.core" Version="1.40.0" />
     <PackageVersion Include="bunit.web" Version="1.40.0" />
     <PackageVersion Include="MarkdownSnippets.MsBuild" Version="28.0.0-beta.8" />
