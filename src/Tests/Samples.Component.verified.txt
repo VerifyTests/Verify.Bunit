@@ -1,0 +1,10 @@
+﻿{
+  Instance: {
+    Intitialized: true,
+    Title: New Title,
+    Person: {
+      Name: Sam
+    }
+  },
+  NodeCount: 9
+}
