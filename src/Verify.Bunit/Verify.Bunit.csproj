@@ -7,8 +7,7 @@
   <ItemGroup>
     <Content Include="../build.targets" PackagePath="buildMultiTargeting\Verify.Bunit.targets" />
     <Content Include="../build.targets" PackagePath="build\Verify.Bunit.targets" />
-    <PackageReference Include="bunit.core" />
-    <PackageReference Include="bunit.web" />
+    <PackageReference Include="bunit" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
     <PackageReference Include="Verify" />
     <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
