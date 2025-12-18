@@ -1,11 +1,11 @@
-<Solution>
+﻿<Solution>
   <Folder Name="/Solution Items/">
     <File Path="../.gitignore" />
     <File Path="../docs/mdsource/intro.include.md" />
     <File Path="../docs/mdsource/zzz.include.md" />
     <File Path="../readme.source.md" />
     <File Path=".editorconfig" />
-    <File Path=".gitattributes" />
+    <File Path="../.gitattributes" />
     <File Path="appveyor.yml" />
     <File Path="build.targets" />
     <File Path="Directory.Build.props" />
