@@ -1,16 +1,15 @@
 using AngleSharp.Diffing.Core;
 using AngleSharp.Text;
-using Bunit.Rendering;
 using CompareResult = VerifyTests.CompareResult;
 
 static class BunitMarkupComparer
 {
     public static Task<CompareResult> Compare(string received, string verified, IReadOnlyDictionary<string, object> context)
     {
-        using var parser = new BunitHtmlParser();
-        var receivedNodes = parser.Parse(received);
-        var verifiedNodes = parser.Parse(verified);
-        var diffs = receivedNodes.CompareTo(verifiedNodes);
+        var parser = new HtmlParser();
+        var receivedDoc = parser.ParseDocument(received);
+        var verifiedDoc = parser.ParseDocument(verified);
+        var diffs = receivedDoc.Body!.ChildNodes.CompareTo(verifiedDoc.Body!.ChildNodes);
 
         var result = diffs.Count == 0
             ? CompareResult.Equal

@@ -5,6 +5,6 @@
             null,
             "html",
             markup
-                .ToHtml(new DiffMarkupFormatter())
+                .ToHtml(new PrettyMarkupFormatter { Indentation = "  " })
                 .Trim());
 }
