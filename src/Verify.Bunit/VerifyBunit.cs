@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Components;
-
 namespace VerifyTests;
 
 public static class VerifyBunit
