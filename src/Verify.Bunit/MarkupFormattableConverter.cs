@@ -7,7 +7,7 @@
         writer.WriteMember(
             markup,
             markup
-            .ToHtml(new DiffMarkupFormatter())
+            .ToHtml(new PrettyMarkupFormatter { Indentation = "  " })
             .Trim(),
             "Markup");
         writer.WriteEndObject();
