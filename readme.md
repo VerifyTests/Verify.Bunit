@@ -8,7 +8,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 # <img src="/src/icon.png" height="30px"> Verify.Bunit
 
 [![Discussions](https://img.shields.io/badge/Verify-Discussions-yellow?svg=true&label=)](https://github.com/orgs/VerifyTests/discussions)
-[![Build status](https://ci.appveyor.com/api/projects/status/spyere4ubpl1tca8?svg=true)](https://ci.appveyor.com/project/SimonCropp/Verify-Bunit)
+[![Build status](https://img.shields.io/appveyor/build/SimonCropp/Verify-Bunit)](https://ci.appveyor.com/project/SimonCropp/Verify-Bunit)
 [![NuGet Status](https://img.shields.io/nuget/v/Verify.Bunit.svg?label=Verify.Bunit)](https://www.nuget.org/packages/Verify.Bunit/)
 
 Support for rendering a [Blazor Component](https://docs.microsoft.com/en-us/aspnet/core/blazor/#components) to a verified file via [bunit](https://bunit.egilhansen.com). Verify.Bunit uses the bUnit APIs to take a snapshot (metadata and html) of the current state of a Blazor component. Since it leverages the bUnit API, snapshots can be on a component that has been manipulated using the full bUnit feature set, for example [trigger event handlers](https://bunit.egilhansen.com/docs/interaction/trigger-event-handlers.html).<!-- singleLineInclude: intro. path: /docs/mdsource/intro.include.md -->
