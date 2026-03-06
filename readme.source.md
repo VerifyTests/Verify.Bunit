@@ -11,7 +11,7 @@ include: intro
 
 ## Sponsors
 
-include: zzz
+include: sponsors
 
 
 ## Component
