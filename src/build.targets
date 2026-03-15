@@ -3,4 +3,21 @@
   <PropertyGroup>
     <NoWarn>$(NoWarn);BL0005</NoWarn>
   </PropertyGroup>
+  <Target Name="VerifyBunitFixRazorNesting"
+          BeforeTargets="BeforeCompile;CollectUpToDateCheckBuiltDesignTime"
+          Condition="('$(DisableVerifyFileNesting)' != 'true') AND '$(Language)' == 'C#'">
+    <ItemGroup>
+      <!-- Razor SDK adds .json/.html verified files as Content. Move to None for nesting -->
+      <Content Remove="**\*.received.*;**\*.verified.*" />
+      <None Include="**\*.received.*;**\*.verified.*" Exclude="**\*.verified.bin;bin\**;obj\**" />
+      <!-- Set razor nesting metadata -->
+      <None Update="**\*.received.*;**\*.verified.*">
+        <_VerifyParent>$([System.String]::Copy('%(FileName)').Split('.')[0].Split('(')[0])</_VerifyParent>
+      </None>
+      <None Update="**\*.received.*;**\*.verified.*"
+            Condition="Exists('$(MSBuildProjectDirectory)\%(RelativeDir)%(_VerifyParent).razor.cs')">
+        <DependentUpon>%(_VerifyParent).razor.cs</DependentUpon>
+      </None>
+    </ItemGroup>
+  </Target>
 </Project>
