@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ItemGroup Condition="('$(DisableVerifyFileNesting)' != 'true') AND '$(Language)' == 'C#' AND '$(UsingMicrosoftNETSdkRazor)' == 'true'">
+    <!-- Razor SDK adds .json files as Content. Move verified/received back to None for nesting -->
+    <Content Remove="**\*.received.*;**\*.verified.*" />
+    <None Include="**\*.received.*;**\*.verified.*" Exclude="**\*.verified.bin;bin\**;obj\**">
+      <ParentFile>$([System.String]::Copy('%(FileName)').Split('.')[0].Split('(')[0])</ParentFile>
+      <ParentRelativeDir>%(RelativeDir)</ParentRelativeDir>
+      <ParentExtension>.cs</ParentExtension>
+      <ParentExtension Condition="Exists('$(MSBuildProjectDirectory)\%(ParentRelativeDir)%(ParentFile).razor.cs')">.razor.cs</ParentExtension>
+      <DependentUpon>%(ParentFile)%(ParentExtension)</DependentUpon>
+    </None>
+  </ItemGroup>
+</Project>

@@ -5,6 +5,8 @@
     <Description>Extends Verify (https://github.com/VerifyTests/Verify) to allow Blazor component verification via BUnit.</Description>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="../build.props" PackagePath="buildMultiTargeting\Verify.Bunit.props" />
+    <Content Include="../build.props" PackagePath="build\Verify.Bunit.props" />
     <Content Include="../build.targets" PackagePath="buildMultiTargeting\Verify.Bunit.targets" />
     <Content Include="../build.targets" PackagePath="build\Verify.Bunit.targets" />
     <PackageReference Include="bunit" />
