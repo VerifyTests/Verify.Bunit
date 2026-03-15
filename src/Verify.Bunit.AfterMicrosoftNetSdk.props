@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Condition="('$(DisableVerifyFileNesting)' != 'true') AND '$(Language)' == 'C#'">
+    <!-- Override nesting for .razor.cs code-behind files -->
+    <None Update="**\*.received.*;**\*.verified.*">
+      <_VerifyParent>$([System.String]::Copy('%(FileName)').Split('.')[0].Split('(')[0])</_VerifyParent>
+      <ParentRelativeDir>%(RelativeDir)</ParentRelativeDir>
+    </None>
+    <None Update="**\*.received.*;**\*.verified.*"
+          Condition="Exists('$(MSBuildProjectDirectory)\%(ParentRelativeDir)%(_VerifyParent).razor.cs')">
+      <DependentUpon>%(_VerifyParent).razor.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+</Project>
