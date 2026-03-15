@@ -3,4 +3,17 @@
   <PropertyGroup>
     <NoWarn>$(NoWarn);BL0005</NoWarn>
   </PropertyGroup>
+  <Target Name="VerifyBunitFixRazorNesting"
+          BeforeTargets="BeforeCompile"
+          Condition="('$(DisableVerifyFileNesting)' != 'true') AND '$(Language)' == 'C#'">
+    <ItemGroup>
+      <None Update="**\*.received.*;**\*.verified.*">
+        <_VerifyParent>$([System.String]::Copy('%(FileName)').Split('.')[0].Split('(')[0])</_VerifyParent>
+      </None>
+      <None Update="**\*.received.*;**\*.verified.*"
+            Condition="Exists('$(MSBuildProjectDirectory)\%(RelativeDir)%(_VerifyParent).razor.cs')">
+        <DependentUpon>%(_VerifyParent).razor.cs</DependentUpon>
+      </None>
+    </ItemGroup>
+  </Target>
 </Project>
