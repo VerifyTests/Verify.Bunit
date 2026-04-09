@@ -23,4 +23,4 @@ Support for rendering a [Blazor Component](https://docs.microsoft.com/en-us/aspn
 
 ### Developed using JetBrains IDEs
 
-[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSourceSupport)<!-- endInclude -->
+[![JetBrains logo.](https://raw.githubusercontent.com/VerifyTests/Verify.Bunit/main/docs/jetbrains.png)](https://jb.gg/OpenSourceSupport)<!-- endInclude -->
