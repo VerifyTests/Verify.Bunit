@@ -35,6 +35,7 @@ public static class ModuleInitializer
         #endregion
 
         VerifyDiffPlex.Initialize(OutputType.Compact);
+        VerifierSettings.UseSsimForPng();
         VerifierSettings.InitializePlugins();
     }
 }
