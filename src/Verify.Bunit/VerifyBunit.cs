@@ -164,7 +164,12 @@ public static class VerifyBunit
         Func<TComponent, bool> renderedCheck)
         where TComponent : IComponent
     {
-        var iterations = timeout?.Milliseconds / 10 ?? 100;
+        // Each iteration waits 10ms, so the retry count is the total timeout in 10ms units. TimeSpan
+        // exposes the total via TotalMilliseconds; the Milliseconds property is only the 0-999 component
+        // (e.g. TimeSpan.FromSeconds(1).Milliseconds is 0), which would collapse any whole-second timeout
+        // to zero retries and time out on the first check.
+        var effectiveTimeout = timeout ?? TimeSpan.FromSeconds(10);
+        var iterations = (int) (effectiveTimeout.TotalMilliseconds / 10);
         var target = render();
 
         var instance = target.Instance;

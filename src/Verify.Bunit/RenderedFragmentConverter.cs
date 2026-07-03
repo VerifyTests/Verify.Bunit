@@ -26,7 +26,16 @@ class RenderedFragmentConverter :
         }
 
         var typeName = type.Name;
-        var unmangledName = typeName[..typeName.IndexOf('`')];
+        // A non-generic type nested in a generic one (e.g. Outer<T>.Inner) reports the enclosing type's
+        // arguments but carries no backtick in its own name, so guard the mangling marker rather than
+        // slicing at index -1.
+        var backtick = typeName.IndexOf('`');
+        if (backtick == -1)
+        {
+            return typeName;
+        }
+
+        var unmangledName = typeName[..backtick];
         return $"{unmangledName}<{string.Join(',', genericArguments.Select(PrettyName))}>";
     }
 }

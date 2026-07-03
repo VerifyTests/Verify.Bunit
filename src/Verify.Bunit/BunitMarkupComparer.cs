@@ -16,7 +16,11 @@ static class BunitMarkupComparer
         var parser = new HtmlParser(new(), BrowsingContext.New(configuration));
         var receivedDoc = parser.ParseDocument(received);
         var verifiedDoc = parser.ParseDocument(verified);
-        var diffs = receivedDoc.Body!.ChildNodes.CompareTo(verifiedDoc.Body!.ChildNodes);
+        // Compare the whole document element rather than just the body. This is the global "html"
+        // comparer, so it also receives complete documents, not only bUnit fragments; comparing only
+        // the body let a difference confined to the head — title, meta, a stylesheet — slip through as
+        // equal. A parsed fragment has an empty head on both sides, so this is a no-op for components.
+        var diffs = receivedDoc.DocumentElement!.ChildNodes.CompareTo(verifiedDoc.DocumentElement!.ChildNodes);
 
         var result = diffs.Count == 0
             ? CompareResult.Equal
