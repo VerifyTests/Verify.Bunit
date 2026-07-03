@@ -4,9 +4,16 @@ using CompareResult = VerifyTests.CompareResult;
 
 static class BunitMarkupComparer
 {
+    // AngleSharp.Diffing compares style attributes semantically, which needs the parsed markup to carry
+    // a real CSS object model. A default HtmlParser has no CSS support, so an element's inline style
+    // parses to null and StyleAttributeComparer throws a NullReferenceException the moment two style
+    // attributes differ. Parsing through a CSS-enabled configuration gives every element a real
+    // ICssStyleDeclaration, so the style comparison works.
+    static readonly IConfiguration configuration = Configuration.Default.WithCss();
+
     public static Task<CompareResult> Compare(string received, string verified, IReadOnlyDictionary<string, object> context)
     {
-        var parser = new HtmlParser();
+        var parser = new HtmlParser(new(), BrowsingContext.New(configuration));
         var receivedDoc = parser.ParseDocument(received);
         var verifiedDoc = parser.ParseDocument(verified);
         var diffs = receivedDoc.Body!.ChildNodes.CompareTo(verifiedDoc.Body!.ChildNodes);
