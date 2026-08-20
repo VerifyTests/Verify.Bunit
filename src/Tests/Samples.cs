@@ -118,7 +118,7 @@ public class Samples
     [Fact]
     public async Task WaitForState()
     {
-        using var context = new BunitContext();
+        await using var context = new BunitContext();
         var component = await context.RenderComponentAndWait<TestComponent>(
             builder =>
             {

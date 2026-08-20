@@ -20,7 +20,7 @@ static class BunitMarkupComparer
         // comparer, so it also receives complete documents, not only bUnit fragments; comparing only
         // the body let a difference confined to the head — title, meta, a stylesheet — slip through as
         // equal. A parsed fragment has an empty head on both sides, so this is a no-op for components.
-        var diffs = receivedDoc.DocumentElement!.ChildNodes.CompareTo(verifiedDoc.DocumentElement!.ChildNodes);
+        var diffs = receivedDoc.DocumentElement.ChildNodes.CompareTo(verifiedDoc.DocumentElement.ChildNodes);
 
         var result = diffs.Count == 0
             ? CompareResult.Equal

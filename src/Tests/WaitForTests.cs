@@ -8,7 +8,7 @@ public class WaitForTests
     [Fact]
     public async Task RenderComponentAndWait_retries_under_a_whole_second_timeout()
     {
-        using var context = new BunitContext();
+        await using var context = new BunitContext();
         var polls = 0;
 
         var component = await context.RenderComponentAndWait<TestComponent>(
