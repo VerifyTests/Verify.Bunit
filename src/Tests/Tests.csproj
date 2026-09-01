@@ -12,12 +12,12 @@
     <PackageReference Include="xunit.v3" />
     <PackageReference Include="ProjectDefaults" PrivateAssets="all" />
     <PackageReference Include="bunit" />
-    <PackageReference Include="Verify.XunitV3" />
+    <PackageReference Include="Verify.XunitV3" VersionOverride="33.0.0-beta.3" />
     <PackageReference Include="Argon" />
     <PackageReference Include="DiffEngine" />
     <PackageReference Include="EmptyFiles" />
     <PackageReference Include="SimpleInfoName" />
-    <PackageReference Include="Verify" />
+    <PackageReference Include="Verify" VersionOverride="33.0.0-beta.3" />
     <ProjectReference Include="..\BlazorApp\BlazorApp.csproj" />
     <ProjectReference Include="..\Verify.Bunit\Verify.Bunit.csproj" />
   </ItemGroup>
