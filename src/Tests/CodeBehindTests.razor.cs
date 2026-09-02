@@ -6,7 +6,7 @@ public class CodeBehindTests
     public Task Component()
     {
         using var context = new BunitContext();
-        var component = context.Render<BlazorApp.TestComponent>(
+        var component = context.Render<TestComponent>(
             builder =>
             {
                 builder.Add(_ => _.Title, "Code Behind Title");
