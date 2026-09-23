@@ -1,7 +1,7 @@
 # <img src="/src/icon.png" height="30px"> Verify.Bunit
 
 [![Discussions](https://img.shields.io/badge/Verify-Discussions-yellow?svg=true&label=)](https://github.com/orgs/VerifyTests/discussions)
-[![Build status](https://ci.appveyor.com/api/projects/status/spyere4ubpl1tca8?svg=true)](https://ci.appveyor.com/project/SimonCropp/Verify-Bunit)
+[![Build status](https://github.com/VerifyTests/Verify.Bunit/actions/workflows/build.yml/badge.svg)](https://github.com/VerifyTests/Verify.Bunit/actions/workflows/build.yml)
 [![NuGet Status](https://img.shields.io/nuget/v/Verify.Bunit.svg?label=Verify.Bunit)](https://www.nuget.org/packages/Verify.Bunit/)
 
 include: intro
